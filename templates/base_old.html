@@ -1,0 +1,69 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootsrtap Free Admin Template - SIMINTA | Admin Dashboad Template</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="{% static 'plugins/bootstrap/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/pace/pace-theme-big-counter.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/main-style.css' %}" rel="stylesheet" />
+
+</head>
+
+<body class="body-Login-back">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center logo-margin ">
+              <img src="{% static 'img/logo.png' %}" alt=""/>
+                </div>
+            <div class="col-md-4 col-md-offset-4">
+
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Խնդրում ենք մուտք գործել համակարգ</h3>
+                    {% if form.errors %}
+                    <p style="color: red"> մուտքանունի կամ գաղտնաբառ սխալ</p>
+                    {% endif %}
+
+                    </div>
+
+                    <div class="panel-body">
+                        <form role="form" method="POST" action="{% url "auth_login" %}" > {% csrf_token %}
+                            <fieldset>
+                            <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Մուտքանուն" />
+                            </div>
+                            <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Գաղտնաբառ" />
+                            </div>
+                            <input class='btn btn-success btn-primary' style="background-color: #18bc9c" type="submit" value="{% trans 'Մուտք' %}" />
+                            <input type="hidden" name="next" value="{{ next }}" />
+
+                            </fieldset>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Core Scripts - Include with every page -->
+    <script src="{% static 'plugins/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+
+</body>
+
+</html>

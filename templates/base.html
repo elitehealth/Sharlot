@@ -1,0 +1,94 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>DASHGUM - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+
+	  <div id="login-page">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center logo-margin ">
+{#              <img src="{% static 'img/portfolio/welcome-to-ibiza-5.jpg' %}" alt=""/>#}
+                </div>
+            <div class="col-md-4 col-md-offset-4">
+
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Խնդրում ենք մուտք գործել համակարգ</h3>
+                    {% if form.errors %}
+                    <p style="color: red"> մուտքանունի կամ գաղտնաբառ սխալ</p>
+                    {% endif %}
+
+                    </div>
+
+                    <div class="panel-body">
+                        <form role="form" method="POST" action="{% url "auth_login" %}" > {% csrf_token %}
+                            <fieldset>
+                            <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Մուտքանուն" />
+                            </div>
+                            <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Գաղտնաբառ" />
+                            </div>
+                            <input class='btn btn-success btn-primary' style="background-color: #18bc9c" type="submit" value="{% trans 'Մուտք' %}" />
+                            <input type="hidden" name="next" value="{{ next }}" />
+
+                            </fieldset>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	  </div>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="{% static 'js/jquery.backstretch.min.js' %}"></script>
+    <script>
+        $.backstretch("{% static 'img/login-bg.jpg' %}", {speed: 500});
+    </script>
+
+
+  </body>
+</html>
